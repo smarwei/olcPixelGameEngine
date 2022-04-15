@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16...3.18)
+cmake_minimum_required(VERSION 3.16...3.23)
 
 project(
     OlcPixelGameEngine
@@ -6,22 +6,26 @@ project(
     LANGUAGES CXX
 )
 
-add_library(olcPixelGameEngine olcPixelGameEngine.h)
-target_include_directories(olcPixelGameEngine PUBLIC .)
-target_compile_features(olcPixelGameEngine PRIVATE cxx_std_17)
+add_library(olcPixelGameEngine INTERFACE olcPixelGameEngine.h)
+target_include_directories(olcPixelGameEngine INTERFACE .)
+target_compile_features(olcPixelGameEngine INTERFACE cxx_std_17)
 set_target_properties(olcPixelGameEngine PROPERTIES LINKER_LANGUAGE CXX)
 
-find_package(PNG REQUIRED)
-find_package(GLEW REQUIRED)  # necessary?
-find_package(OpenGL REQUIRED)
-find_package(X11 REQUIRED)
-target_link_libraries(olcPixelGameEngine PUBLIC PNG::PNG)
-target_link_libraries(olcPixelGameEngine PUBLIC OpenGL::GL)
-target_link_libraries(olcPixelGameEngine PUBLIC GLEW::glew)
-target_link_libraries(olcPixelGameEngine PUBLIC OpenGL::GL)
-target_link_libraries(olcPixelGameEngine PUBLIC X11::X11)
-#target_link_libraries(olcPixelGameEngine PRIVATE OpenGL:GLU)
-#target_link_libraries(olcPixelGameEngine PRIVATE )
+
+IF (WIN32)
+    target_link_libraries(olcPixelGameEngine INTERFACE user32 gdi32 opengl32 gdiplus Shlwapi dwmapi)
+ELSE()
+    find_package(PNG REQUIRED)
+    find_package(GLEW REQUIRED)  # necessary?
+    find_package(OpenGL REQUIRED)
+    find_package(X11 REQUIRED)
+    target_link_libraries(olcPixelGameEngine PUBLIC PNG::PNG)
+    target_link_libraries(olcPixelGameEngine PUBLIC OpenGL::GL GLEW::glew)
+    target_link_libraries(olcPixelGameEngine PUBLIC X11::X11)
+    #target_link_libraries(olcPixelGameEngine PRIVATE OpenGL:GLU)
+    #target_link_libraries(olcPixelGameEngine PRIVATE )
+ENDIF()
+
 
 add_executable(olcExampleProgram olcExampleProgram.cpp)
 target_link_libraries(olcExampleProgram PRIVATE olcPixelGameEngine)
