@@ -19,14 +19,14 @@ ELSE()
     find_package(GLEW REQUIRED)  # necessary?
     find_package(OpenGL REQUIRED)
     find_package(X11 REQUIRED)
-    target_link_libraries(olcPixelGameEngine PUBLIC PNG::PNG)
-    target_link_libraries(olcPixelGameEngine PUBLIC OpenGL::GL GLEW::glew)
-    target_link_libraries(olcPixelGameEngine PUBLIC X11::X11)
+    target_link_libraries(olcPixelGameEngine INTERFACE PNG::PNG)
+    target_link_libraries(olcPixelGameEngine INTERFACE OpenGL::GL GLEW::glew)
+    target_link_libraries(olcPixelGameEngine INTERFACE X11::X11)
     #target_link_libraries(olcPixelGameEngine PRIVATE OpenGL:GLU)
     #target_link_libraries(olcPixelGameEngine PRIVATE )
 ENDIF()
 
 
 add_executable(olcExampleProgram olcExampleProgram.cpp)
-target_link_libraries(olcExampleProgram PRIVATE olcPixelGameEngine)
+target_link_libraries(olcExampleProgram INTERFACE olcPixelGameEngine)
 
