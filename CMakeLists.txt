@@ -28,5 +28,5 @@ ENDIF()
 
 
 add_executable(olcExampleProgram olcExampleProgram.cpp)
-target_link_libraries(olcExampleProgram INTERFACE olcPixelGameEngine)
+target_link_libraries(olcExampleProgram PRIVATE olcPixelGameEngine)
 
