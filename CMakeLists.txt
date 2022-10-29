@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16...3.23)
 
 project(
-    OlcPixelGameEngine
+    olcPixelGameEngine
     VERSION 0.1
     LANGUAGES CXX
 )
