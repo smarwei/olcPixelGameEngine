@@ -38,4 +38,4 @@ target_link_libraries(olcExampleProgram PRIVATE olcPixelGameEngine)
 # --------------------------------------------------------------------------------------------------------
 
 install(DIRECTORY "./" TYPE INCLUDE)
-install(TARGETS olcPixelGameEngine INCLUDES DESTINATION include)
+install(TARGETS olcPixelGameEngine INCLUDES DESTINATION .)
