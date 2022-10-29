@@ -32,3 +32,10 @@ ENDIF()
 add_executable(olcExampleProgram olcExampleProgram.cpp)
 target_link_libraries(olcExampleProgram PRIVATE olcPixelGameEngine)
 
+
+# --------------------------------------------------------------------------------------------------------
+# Install Targets
+# --------------------------------------------------------------------------------------------------------
+
+install(DIRECTORY "include/" TYPE INCLUDE)
+install(TARGETS ${PROJECT_NAME} INCLUDES DESTINATION include)
