@@ -8,6 +8,7 @@ project(
 
 add_library(olcPixelGameEngine INTERFACE olcPixelGameEngine.h)
 target_include_directories(olcPixelGameEngine INTERFACE .)
+target_include_directories(olcPixelGameEngine INTERFACE "include")
 target_compile_features(olcPixelGameEngine INTERFACE cxx_std_17)
 set_target_properties(olcPixelGameEngine PROPERTIES LINKER_LANGUAGE CXX)
 
@@ -37,5 +38,7 @@ target_link_libraries(olcExampleProgram PRIVATE olcPixelGameEngine)
 # Install Targets
 # --------------------------------------------------------------------------------------------------------
 
-install(DIRECTORY "." TYPE INCLUDE)
-install(TARGETS olcPixelGameEngine INCLUDES DESTINATION .)
+# install(DIRECTORY "." TYPE INCLUDE)
+# install(TARGETS olcPixelGameEngine INCLUDES DESTINATION .)
+install(DIRECTORY "include/" TYPE INCLUDE)
+install(TARGETS ${PROJECT_NAME} INCLUDES DESTINATION include)
